@@ -1,5 +1,8 @@
 import React from "react";
+import axios from "axios"
 import { motion } from "framer-motion";
+import { useState,useEffect } from "react";
+import Stories from "./Stories";
 
 const container = (delay) => ({
   hidden: { x: -100, opacity: 0 },
@@ -17,6 +20,29 @@ const variants = {
 
 
 function Work() {
+  
+  const [stories, setStories] = useState([]);
+  
+  useEffect(() => {
+    const fetchStories = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/stories");
+        setStories(response.data);
+        localStorage.setItem("stories", JSON.stringify(response.data)); // Store locally
+      } catch (error) {
+        console.error("Error fetching stories:", error);
+      }
+    };
+
+    // Load from localStorage if available, otherwise fetch
+    const savedStories = localStorage.getItem("stories");
+    if (savedStories) {
+      setStories(JSON.parse(savedStories));
+    } else {
+      fetchStories();
+    }
+  }, []);
+
   return (
     <>
       <div  
@@ -194,6 +220,9 @@ function Work() {
           </motion.p>
         </div>
       </div>
+      
+      <Stories/>
+     
     </>
   );
 }

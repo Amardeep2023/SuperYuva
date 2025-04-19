@@ -19,7 +19,7 @@ function About() {
       animate="visible"
       className="mt-10 p-5 flex flex-row items-center gap-5 ph:flex-wrap-reverse ">
         {/* Left Text Section */}
-        <div className=" ph:text-lg ph:font-sans ph:font-light   ph:w-full flex flex-col items-start justify-center p-2 border-neutral-300 shadow-lg font-sans">
+        <div className=" ph:text-lg ph:font-sans ph:font-light ph:w-full flex flex-col items-start justify-center p-2 border-neutral-300 shadow-lg font-sans">
           <motion.h1
             variants={container(0.1)}
             initial="hidden"
