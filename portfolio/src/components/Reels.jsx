@@ -16,14 +16,14 @@ const Reels = () => {
   useEffect(() => {
     const fetchReels = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/reels');
+        const response = await axios.get('https://superyuva.onrender.com/api/reels');
         setReels(response.data);
       } catch (error) {
         console.error('Error fetching reels:', error);
         setError('Failed to load reels');
       }
     };
-
+  
     fetchReels();
     checkAdminStatus();
   }, []);
